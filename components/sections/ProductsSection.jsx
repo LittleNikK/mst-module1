@@ -32,6 +32,7 @@ export default function ProductsSection() {
     target: sectionRef,
     offset: ['start start', 'end end']
   });
+  // this is the the products section we from here 
 
   const imageParallaxY = useTransform(scrollYProgress, [0, 1], [16, -16]);
 

@@ -63,7 +63,7 @@ export default function HeroText() {
         <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }}>
           <Link
             href="#"
-            className="inline-flex items-center rounded-full bg-black px-6 py-2.5 text-[11px] font-bold uppercase tracking-[0.13em] text-white shadow-xl shadow-black/20 transition-all hover:bg-neutral-800"
+            className="inline-flex items-center rounded-full bg-black px-6 py-2.5 text-[11px] font-bold uppercase tracking-[0.13em] text-white shadow-xl shadow-black/20 transition-all hover:bg-[#EA3446]"
           >
             Products
           </Link>
@@ -72,7 +72,7 @@ export default function HeroText() {
         <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }}>
           <Link
             href="#"
-            className="inline-flex items-center rounded-full border border-black/20 bg-white/70 px-6 py-2.5 text-[11px] font-bold uppercase tracking-[0.13em] text-black transition-all hover:border-black/35 hover:bg-white"
+            className="inline-flex items-center rounded-full border border-black/20 bg-white/70 px-6 py-2.5 text-[11px] font-bold uppercase tracking-[0.13em] text-black transition-all hover:border-[#EA3446] hover:bg-[#EA3446] hover:text-white"
           >
             Docs
           </Link>

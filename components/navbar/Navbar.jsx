@@ -57,7 +57,7 @@ export default function Navbar() {
             <div className="absolute inset-0 rounded-full bg-accent opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-40" />
             <Link
               href="#"
-              className="relative inline-flex items-center space-x-2 rounded-full border border-black bg-black px-6 py-2.5 text-[11px] font-bold uppercase tracking-[0.15em] text-white transition-all ease-out hover:bg-neutral-800 hover:border-neutral-800 shadow-[0_4px_10px_rgba(0,0,0,0.15)]"
+              className="relative inline-flex items-center space-x-2 rounded-full border border-black bg-black px-6 py-2.5 text-[11px] font-bold uppercase tracking-[0.15em] text-white transition-all ease-out hover:bg-[#EA3446] hover:border-[#EA3446] shadow-[0_4px_10px_rgba(0,0,0,0.15)]"
             >
               <span>Explore Ecosystem</span>
               <svg className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -113,7 +113,7 @@ export default function Navbar() {
               <Link
                 href="#"
                 onClick={() => setIsOpen(false)}
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-black px-5 py-3.5 text-xs font-bold uppercase tracking-[0.15em] text-white shadow-[0_4px_14px_0_rgba(0,0,0,0.2)] transition-all hover:bg-neutral-800 hover:translate-y-[-2px]"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-black px-5 py-3.5 text-xs font-bold uppercase tracking-[0.15em] text-white shadow-[0_4px_14px_0_rgba(0,0,0,0.2)] transition-all hover:bg-[#EA3446] hover:translate-y-[-2px]"
               >
                 <span>Explore Ecosystem</span>
               </Link>
