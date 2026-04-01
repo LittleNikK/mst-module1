@@ -22,8 +22,15 @@ export default function Navbar() {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="fixed top-4 left-0 right-0 z-50 mx-auto w-full max-w-[90rem] px-4 sm:px-5 lg:px-6"
     >
-      <div className="relative rounded-2xl border border-white/60 bg-gradient-to-r from-accent/15 via-pink-500/10 to-orange-500/15 shadow-[0_8px_32px_rgba(255,45,45,0.15)] backdrop-blur-xl transition-all duration-300">
-        <nav className="flex h-16 w-full items-center justify-between px-4 lg:px-6">
+      <div className="relative rounded-2xl border border-white/60 bg-white/40 shadow-[0_8px_32px_rgba(255,45,45,0.08)] backdrop-blur-md transition-all duration-300 overflow-hidden group/nav">
+        {/* Animated Glass Gradients */}
+        <div className="pointer-events-none absolute inset-0 z-0 opacity-60 mix-blend-multiply transition-opacity duration-500 group-hover/nav:opacity-80">
+          <div className="absolute -top-10 -left-10 h-32 w-48 rounded-full bg-gradient-to-r from-accent/40 to-pink-500/40 blur-[30px]" />
+          <div className="absolute -bottom-10 left-1/2 h-32 w-64 -translate-x-1/2 rounded-full bg-gradient-to-r from-orange-400/30 to-accent/30 blur-[40px]" />
+          <div className="absolute -top-10 -right-10 h-32 w-48 rounded-full bg-gradient-to-l from-red-500/40 to-purple-500/30 blur-[30px]" />
+        </div>
+        
+        <nav className="relative z-10 flex h-16 w-full items-center justify-between px-4 lg:px-6">
           <Link href="#" className="-ml-1 flex items-center gap-2 group">
             <motion.div whileHover={{ rotate: 180 }} transition={{ duration: 0.4, ease: "easeInOut" }}>
                <Image src="/assets/hero/mst-dark-logo.svg" alt="MST logo" width={40} height={36} className="h-[36px] w-[40px] drop-shadow-sm group-hover:drop-shadow-[0_0_8px_rgba(255,45,45,0.5)] transition-all" priority />
