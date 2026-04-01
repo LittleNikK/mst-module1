@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  background-color: #ffffff;
+  color: #050505;
+}
+
+@keyframes partners-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.partners-marquee-track {
+  animation: partners-marquee 24s linear infinite;
+  will-change: transform;
+}
+
+.partners-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@media (max-width: 768px) {
+  .partners-marquee-track {
+    animation-duration: 30s;
+  }
+}
+
+@layer utilities {
+  .bg-noise {
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(255, 45, 45, 0.09), transparent 34%),
+      radial-gradient(circle at 90% 0%, rgba(0, 0, 0, 0.08), transparent 32%),
+      linear-gradient(180deg, #ffffff 0%, #fbfbfc 56%, #f5f5f7 100%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23101010' fill-opacity='0.03'%3E%3Ccircle cx='7' cy='7' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-blend-mode: normal, normal, normal, soft-light;
+  }
+}
