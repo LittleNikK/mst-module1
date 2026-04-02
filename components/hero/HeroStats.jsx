@@ -1,12 +1,40 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 
 const stats = [
-  { label: 'Finality', value: '400ms', active: true },
-  { label: 'Active Nodes', value: '12,400+', active: false },
-  { label: 'Total Value', value: '$4.2B+', active: false }
+  { label: 'Finality', value: 400, suffix: 'ms', active: true },
+  { label: 'Active Nodes', value: 12400, suffix: '+', active: false },
+  { label: 'Total Value', value: 4.2, prefix: '$', suffix: 'B+', active: false }
 ];
+
+function CountUp({ value, prefix = '', suffix = '', decimals = 0 }) {
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => {
+    const formatted = latest.toLocaleString(undefined, {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals,
+    });
+    return `${prefix}${formatted}${suffix}`;
+  });
+
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    if (isInView) {
+      const controls = animate(count, value, {
+        duration: 2,
+        ease: [0.16, 1, 0.3, 1],
+        delay: 0.5,
+      });
+      return controls.stop;
+    }
+  }, [count, value, isInView]);
+
+  return <motion.span ref={ref}>{rounded}</motion.span>;
+}
 
 export default function HeroStats() {
   return (
@@ -42,7 +70,14 @@ export default function HeroStats() {
             </span>}
             {stat.label}
           </p>
-          <p className="mt-1 font-[var(--font-space-grotesk)] text-xl sm:text-2xl font-bold tracking-tight text-black drop-shadow-sm group-hover:text-accent transition-colors">{stat.value}</p>
+          <div className="mt-1 font-[var(--font-space-grotesk)] text-xl sm:text-2xl font-bold tracking-tight text-black drop-shadow-sm group-hover:text-accent transition-colors">
+            <CountUp 
+              value={stat.value} 
+              prefix={stat.prefix} 
+              suffix={stat.suffix} 
+              decimals={stat.value % 1 !== 0 ? 1 : 0} 
+            />
+          </div>
         </motion.div>
       ))}
     </motion.div>
