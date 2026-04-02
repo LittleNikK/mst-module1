@@ -3,7 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState, useRef } from 'react';
+import { ChevronRight } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 
 const navItems = [
   { label: 'Build', href: '#', active: true },
@@ -12,18 +13,244 @@ const navItems = [
   { label: 'Use Cases', href: '#', active: false }
 ];
 
+const buildResources = [
+  {
+    title: 'DEVELOPER RESOURCES',
+    items: ['Testnet', 'Faucet', 'Developer Docs', 'MST Explorer']
+  },
+  {
+    title: 'SUPPORT & PROGRAMS',
+    items: ['Grant Program', 'Developer Support Forum', 'Personalized Dev Support']
+  }
+];
+
+const learnResources = [
+  {
+    title: 'BLOCKCHAIN',
+    items: ['Block Validation Process', 'DAO & MST Chain', 'No Code Fractional Validator', 'Solidity : EVM Programming Language', 'Transparency']
+  }
+];
+
+const learnHighlights = {
+  title: 'HIGHLIGHTS',
+  label: 'LATEST TWEET',
+  placeholder: 'Tweet content coming soon'
+};
+
+const productsResources = [
+  {
+    name: 'BridgeKey',
+    description: 'Cross-chain asset bridging'
+  },
+  {
+    name: 'MST Buddy',
+    description: 'Developer assistant toolkit'
+  },
+  {
+    name: 'ChainPay',
+    description: 'Seamless Web3 payments'
+  }
+];
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isBuildOpen, setIsBuildOpen] = useState(false);
+  const [isLearnOpen, setIsLearnOpen] = useState(false);
+  const [isProductsOpen, setIsProductsOpen] = useState(false);
+  const [mobileBuildOpen, setMobileBuildOpen] = useState(false);
+  const [mobileLearnOpen, setMobileLearnOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const containerRef = useRef(null);
+  const buildCloseTimerRef = useRef(null);
+  const learnCloseTimerRef = useRef(null);
+  const productsCloseTimerRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (buildCloseTimerRef.current) clearTimeout(buildCloseTimerRef.current);
+      if (learnCloseTimerRef.current) clearTimeout(learnCloseTimerRef.current);
+      if (productsCloseTimerRef.current) clearTimeout(productsCloseTimerRef.current);
+    };
+  }, []);
 
   const handleMouseMove = (e) => {
-    if (containerRef.current) {
-      const rect = containerRef.current.getBoundingClientRect();
-      setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-    }
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   };
+
+  const openBuildMenu = () => {
+    if (buildCloseTimerRef.current) clearTimeout(buildCloseTimerRef.current);
+    setIsBuildOpen(true);
+  };
+
+  const closeBuildMenu = () => {
+    if (buildCloseTimerRef.current) clearTimeout(buildCloseTimerRef.current);
+    buildCloseTimerRef.current = setTimeout(() => setIsBuildOpen(false), 150);
+  };
+
+  const openLearnMenu = () => {
+    if (learnCloseTimerRef.current) clearTimeout(learnCloseTimerRef.current);
+    setIsLearnOpen(true);
+  };
+
+  const closeLearnMenu = () => {
+    if (learnCloseTimerRef.current) clearTimeout(learnCloseTimerRef.current);
+    learnCloseTimerRef.current = setTimeout(() => setIsLearnOpen(false), 150);
+  };
+
+  const openProductsMenu = () => {
+    if (productsCloseTimerRef.current) clearTimeout(productsCloseTimerRef.current);
+    setIsProductsOpen(true);
+  };
+
+  const closeProductsMenu = () => {
+    if (productsCloseTimerRef.current) clearTimeout(productsCloseTimerRef.current);
+    productsCloseTimerRef.current = setTimeout(() => setIsProductsOpen(false), 150);
+  };
+
+  const dropdownPanelClass =
+    'absolute left-1/2 top-full mt-4 w-[760px] -translate-x-1/2 rounded-2xl border border-black bg-white p-8 text-black shadow-[0_18px_50px_rgba(0,0,0,0.16)]';
+
+  const navLinkClass = (active) =>
+    `group relative text-sm font-medium lowercase tracking-tight transition-colors ${active ? 'text-white' : 'text-white/50 hover:text-white'}`;
+
+  const renderBuildDropdown = () => (
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+      onMouseEnter={openBuildMenu}
+      onMouseLeave={closeBuildMenu}
+      className={dropdownPanelClass}
+    >
+      <div className="grid grid-cols-2 gap-10">
+        {buildResources.map((group, groupIndex) => (
+          <div key={group.title} className={groupIndex === 1 ? 'border-l border-black/10 pl-10' : ''}>
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#FF2D2D]">{group.title}</p>
+            <motion.ul
+              initial="hidden"
+              animate="show"
+              variants={{ hidden: {}, show: { transition: { staggerChildren: 0.04, delayChildren: 0.04 } } }}
+              className="mt-5 space-y-3"
+            >
+              {group.items.map((link) => (
+                <motion.li key={link} variants={{ hidden: { opacity: 0, x: -8 }, show: { opacity: 1, x: 0 } }}>
+                  <a
+                    href="#"
+                    className="group flex items-center justify-between rounded-xl px-3 py-2 text-sm font-medium text-black transition-all duration-300 hover:bg-black/5 hover:text-[#FF2D2D]"
+                  >
+                    <span className="transition-transform duration-300 group-hover:translate-x-1">{link}</span>
+                    <ChevronRight size={14} className="text-black/25 transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#FF2D2D]" />
+                  </a>
+                </motion.li>
+              ))}
+            </motion.ul>
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  );
+
+  const renderLearnDropdown = () => (
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+      onMouseEnter={openLearnMenu}
+      onMouseLeave={closeLearnMenu}
+      className={dropdownPanelClass}
+    >
+      <div className="grid grid-cols-2 gap-10 max-lg:grid-cols-1">
+        <div className="space-y-5 lg:border-r lg:border-black/10 lg:pr-10">
+          <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#FF2D2D]">{learnResources[0].title}</p>
+          <motion.ul
+            initial="hidden"
+            animate="show"
+            variants={{ hidden: {}, show: { transition: { staggerChildren: 0.04, delayChildren: 0.04 } } }}
+            className="space-y-3"
+          >
+            {learnResources[0].items.map((link) => (
+              <motion.li key={link} variants={{ hidden: { opacity: 0, x: -8 }, show: { opacity: 1, x: 0 } }}>
+                <a
+                  href="#"
+                  className="group flex items-center justify-between rounded-xl px-3 py-2 text-sm font-medium text-black transition-all duration-300 hover:bg-black/5 hover:text-[#FF2D2D]"
+                >
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">{link}</span>
+                  <ChevronRight size={14} className="text-black/25 transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#FF2D2D]" />
+                </a>
+              </motion.li>
+            ))}
+          </motion.ul>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          className="space-y-4 lg:pl-10"
+        >
+          <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#FF2D2D]">{learnHighlights.title}</p>
+          <div className="rounded-none border border-black bg-white p-0 shadow-[0_10px_28px_rgba(0,0,0,0.08)]">
+            <div className="px-0 pb-3 text-[10px] font-bold uppercase tracking-[0.18em] text-black/50">{learnHighlights.label}</div>
+            <div className="flex h-[130px] items-center justify-center border border-black/15 bg-neutral-100 text-sm text-black/60">
+              {learnHighlights.placeholder}
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+
+  const renderProductsDropdown = () => (
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+      onMouseEnter={openProductsMenu}
+      onMouseLeave={closeProductsMenu}
+      className="absolute left-1/2 top-full mt-4 w-[420px] -translate-x-1/2 rounded-2xl border border-black bg-white p-6 text-black shadow-[0_18px_50px_rgba(0,0,0,0.16)]"
+    >
+      <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#FF2D2D]">PRODUCTS</p>
+
+      <motion.ul
+        initial="hidden"
+        animate="show"
+        variants={{ hidden: {}, show: { transition: { staggerChildren: 0.05, delayChildren: 0.05 } } }}
+        className="mt-5 space-y-2"
+      >
+        {productsResources.map((product, index) => (
+          <motion.li
+            key={product.name}
+            variants={{ hidden: { opacity: 0, x: -8 }, show: { opacity: 1, x: 0 } }}
+            className={index !== productsResources.length - 1 ? 'border-b border-black/10 pb-2' : ''}
+          >
+            <a
+              href="#"
+              className="group block rounded-xl px-3 py-2 transition-all duration-300 hover:bg-black/5"
+            >
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <div className="text-sm font-bold text-black transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#FF2D2D]">
+                    {product.name}
+                  </div>
+                  <div className="mt-1 text-xs text-black/50 transition-all duration-300 group-hover:translate-x-1 group-hover:text-black/70">
+                    {product.description}
+                  </div>
+                </div>
+                <ChevronRight size={14} className="text-black/25 transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#FF2D2D]" />
+              </div>
+            </a>
+          </motion.li>
+        ))}
+      </motion.ul>
+    </motion.div>
+  );
 
   return (
     <motion.header
@@ -32,89 +259,127 @@ export default function Navbar() {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="fixed top-4 left-0 right-0 z-50 mx-auto w-full max-w-[90rem] px-4 sm:px-5 lg:px-6"
     >
-      {/* Outer Border Glow Container - Cyber Teal Glow */}
-      <div 
+      <div
         ref={containerRef}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         className="relative rounded-2xl bg-gradient-to-r from-[#EA2828]/25 via-[#EA2828] to-[#EA2828]/25 p-[1px] shadow-[0_8px_32px_rgba(234,40,40,0.18)] transition-all duration-300"
       >
-        <div className="relative overflow-hidden rounded-2xl bg-black/90 backdrop-blur-[12px] group/nav">
+        <div className="relative overflow-visible rounded-2xl bg-black/90 backdrop-blur-[12px] group/nav">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(234,40,40,0.18),transparent_55%),linear-gradient(135deg,rgba(234,40,40,0.12)_0%,rgba(0,0,0,0.08)_50%,rgba(234,40,40,0.08)_100%)] opacity-80" />
-          
-          {/* Continuous Ambient Loop - Always Active */}
+
           <motion.div
             animate={{ left: ['-20%', '120%'] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
             className="pointer-events-none absolute inset-y-0 w-[300px] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#EA2828]/20 to-transparent mix-blend-screen opacity-50"
           />
 
-          {/* Rose Red Ripple Wave Effect - High Intensity Scanline */}
           <AnimatePresence>
             {isHovered && (
               <>
-                {/* Expanding Core Pulse */}
                 <motion.div
                   key="ripple-core"
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 0.8, scale: 15 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  transition={{ duration: 0.8, ease: 'easeOut' }}
                   style={{
                     left: mousePos.x,
                     top: mousePos.y,
-                    background: 'radial-gradient(circle, rgba(234, 40, 40, 0.72) 0%, transparent 70%)',
+                    background: 'radial-gradient(circle, rgba(234, 40, 40, 0.72) 0%, transparent 70%)'
                   }}
                   className="pointer-events-none absolute h-[150px] w-[150px] -translate-x-1/2 -translate-y-1/2 rounded-full mix-blend-screen"
                 />
-                
-                {/* Horizontal Energy Sweep (Scanline) */}
+
                 <motion.div
                   key="ripple-sweep"
                   initial={{ left: '-20%', opacity: 0 }}
                   animate={{ left: '120%', opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  transition={{ duration: 0.6, ease: 'easeInOut' }}
                   className="pointer-events-none absolute inset-y-0 w-[400px] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#EA2828]/40 to-transparent mix-blend-screen"
                 />
               </>
             )}
           </AnimatePresence>
 
-          <nav className="relative z-10 flex h-16 w-full items-center justify-between px-4 lg:px-8">
-            {/* Left: Logo */}
+          <nav className="relative z-20 flex h-16 w-full items-center justify-between px-4 lg:px-8">
             <Link href="#" className="-ml-1 flex items-center gap-2 group">
-              <motion.div whileHover={{ rotate: 180 }} transition={{ duration: 0.4, ease: "easeInOut" }}>
-                 <Image 
-                  src="/assets/hero/mst-dark-logo.svg" 
-                  alt="MST logo" 
-                  width={40} 
-                  height={36} 
-                  className="h-[36px] w-[40px] drop-shadow-sm transition-all invert brightness-0 invert-[1]" 
-                  priority 
+              <motion.div whileHover={{ rotate: 180 }} transition={{ duration: 0.4, ease: 'easeInOut' }}>
+                <Image
+                  src="/assets/hero/mst-dark-logo.svg"
+                  alt="MST logo"
+                  width={40}
+                  height={36}
+                  className="h-[36px] w-[40px] drop-shadow-sm transition-all invert brightness-0 invert-[1]"
+                  priority
                 />
               </motion.div>
-              <span className="font-[var(--font-space-grotesk)] text-sm font-extrabold tracking-[0.05em] text-white">MST<span className="text-[#ff2d2d]">Blockchain</span></span>
+              <span className="font-[var(--font-space-grotesk)] text-sm font-extrabold tracking-[0.05em] text-white">
+                MST<span className="text-[#ff2d2d]">Blockchain</span>
+              </span>
             </Link>
 
-            {/* Center: Nav links - Lowercase styling */}
             <ul className="hidden items-center gap-10 lg:flex">
               {navItems.map((item) => (
                 <li key={item.label}>
-                  <Link href={item.href} className={`group relative text-sm font-medium lowercase tracking-tight transition-colors ${item.active ? 'text-white' : 'text-white/50 hover:text-white'}`}>
-                    <span>{item.label}</span>
-                    <span
-                      className={`absolute -bottom-1 left-0 h-[1.5px] bg-[#ff2d2d] transition-all duration-300 ${
-                        item.active ? 'w-full' : 'w-0 group-hover:w-full'
-                      }`}
-                    />
-                  </Link>
+                  {item.label === 'Build' ? (
+                    <div className="relative" onMouseEnter={openBuildMenu} onMouseLeave={closeBuildMenu}>
+                      <button
+                        type="button"
+                        onClick={() => setIsBuildOpen((prev) => !prev)}
+                        className={navLinkClass(true)}
+                        aria-expanded={isBuildOpen}
+                      >
+                        <span>Build</span>
+                        <span className="absolute -bottom-1 left-0 h-[1.5px] w-full bg-[#ff2d2d]" />
+                      </button>
+
+                      <AnimatePresence>{isBuildOpen ? renderBuildDropdown() : null}</AnimatePresence>
+                    </div>
+                  ) : item.label === 'Learn' ? (
+                    <div className="relative" onMouseEnter={openLearnMenu} onMouseLeave={closeLearnMenu}>
+                      <button
+                        type="button"
+                        onClick={() => setIsLearnOpen((prev) => !prev)}
+                        className={navLinkClass(false)}
+                        aria-expanded={isLearnOpen}
+                      >
+                        <span>Learn</span>
+                        <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-[#ff2d2d] transition-all duration-300 group-hover:w-full" />
+                      </button>
+
+                      <AnimatePresence>{isLearnOpen ? renderLearnDropdown() : null}</AnimatePresence>
+                    </div>
+                  ) : item.label === 'Products' ? (
+                    <div className="relative" onMouseEnter={openProductsMenu} onMouseLeave={closeProductsMenu}>
+                      <button
+                        type="button"
+                        onClick={() => setIsProductsOpen((prev) => !prev)}
+                        className={navLinkClass(false)}
+                        aria-expanded={isProductsOpen}
+                      >
+                        <span>Products</span>
+                        <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-[#ff2d2d] transition-all duration-300 group-hover:w-full" />
+                      </button>
+
+                      <AnimatePresence>{isProductsOpen ? renderProductsDropdown() : null}</AnimatePresence>
+                    </div>
+                  ) : (
+                    <Link href={item.href} className={navLinkClass(item.active)}>
+                      <span>{item.label}</span>
+                      <span
+                        className={`absolute -bottom-1 left-0 h-[1.5px] bg-[#ff2d2d] transition-all duration-300 ${
+                          item.active ? 'w-full' : 'w-0 group-hover:w-full'
+                        }`}
+                      />
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
 
-            {/* Right: Action Button - Cyber Red Gradient */}
             <div className="hidden lg:block relative group">
               <div className="absolute inset-0 rounded-full bg-[#ff2d2d] opacity-20 blur-md transition-opacity duration-300 group-hover:opacity-40" />
               <Link
@@ -122,29 +387,32 @@ export default function Navbar() {
                 className="relative inline-flex items-center space-x-2 rounded-full bg-[#ff2d2d] px-7 py-2.5 text-[11px] font-bold uppercase tracking-[0.15em] text-black transition-all ease-out hover:bg-[#ff4d4d] shadow-[0_4px_14px_0_rgba(255,45,45,0.3)] hover:scale-[1.02] active:scale-95"
               >
                 <span>explore ecosystem</span>
-                <svg className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
               </Link>
             </div>
 
-            {/* Mobile Toggle */}
             <button
               type="button"
               aria-label="Toggle navigation menu"
               aria-expanded={isOpen}
-              onClick={() => setIsOpen((previous) => !previous)}
+              onClick={() => {
+                setIsOpen((previous) => !previous);
+                setMobileBuildOpen(false);
+                setMobileLearnOpen(false);
+                setMobileProductsOpen(false);
+              }}
               className="group relative inline-flex h-9 w-9 flex-col items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/5 text-white lg:hidden"
             >
-              <span className={`h-0.5 w-4 bg-white transition-all duration-300 origin-center ${isOpen ? 'translate-y-[8px] rotate-45' : ''}`} />
-              <span className={`h-0.5 w-4 bg-white transition-all duration-300 ${isOpen ? 'opacity-0 scale-x-0' : 'opacity-100'}`} />
-              <span className={`h-0.5 w-4 bg-white transition-all duration-300 origin-center ${isOpen ? '-translate-y-[8px] -rotate-45' : ''}`} />
+              <span className={`h-0.5 w-4 origin-center bg-white transition-all duration-300 ${isOpen ? 'translate-y-[8px] rotate-45' : ''}`} />
+              <span className={`h-0.5 w-4 bg-white transition-all duration-300 ${isOpen ? 'scale-x-0 opacity-0' : 'opacity-100'}`} />
+              <span className={`h-0.5 w-4 origin-center bg-white transition-all duration-300 ${isOpen ? '-translate-y-[8px] -rotate-45' : ''}`} />
             </button>
           </nav>
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen ? (
           <motion.div
@@ -152,27 +420,169 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 8, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute left-4 right-4 top-full mt-2 rounded-2xl border border-white/10 bg-black/95 p-4 shadow-2xl backdrop-blur-[12px] lg:hidden text-white"
+            className="absolute left-4 right-4 top-full mt-2 rounded-2xl border border-white/10 bg-black/95 p-4 text-white shadow-2xl backdrop-blur-[12px] lg:hidden"
           >
-            <ul className="space-y-1">
-              {navItems.map((item) => (
-                <li key={item.label}>
-                  <Link 
-                    href={item.href} 
-                    className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-sm font-bold lowercase transition-all ${item.active ? 'bg-teal-500/10 text-[#2DD4BF]' : 'text-white/60 hover:bg-white/5 hover:text-white'}`} 
+            <div className="space-y-1">
+              <button
+                type="button"
+                onClick={() => setMobileBuildOpen((prev) => !prev)}
+                className="flex w-full items-center justify-between rounded-xl bg-white/5 px-4 py-3 text-sm font-bold lowercase text-white transition-all"
+              >
+                <span className="flex items-center gap-3">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#EA2828] shadow-sm" />
+                  Build
+                </span>
+                <ChevronRight size={16} className={`transition-transform duration-300 ${mobileBuildOpen ? 'rotate-90' : ''}`} />
+              </button>
+
+              <AnimatePresence>
+                {mobileBuildOpen ? (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0, y: -6 }}
+                    animate={{ opacity: 1, height: 'auto', y: 0 }}
+                    exit={{ opacity: 0, height: 0, y: -6 }}
+                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    className="overflow-hidden rounded-xl border border-white/10 bg-white/5 px-3 py-3"
+                  >
+                    <div className="space-y-4">
+                      {buildResources.map((group) => (
+                        <div key={group.title} className="space-y-2">
+                          <p className="px-2 text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#EA2828]">{group.title}</p>
+                          <div className="space-y-1">
+                            {group.items.map((link) => (
+                              <a
+                                key={link}
+                                href="#"
+                                onClick={() => setIsOpen(false)}
+                                className="flex items-center justify-between rounded-lg px-3 py-2 text-xs font-medium text-white/70 transition-all hover:bg-white/5 hover:text-white"
+                              >
+                                <span>{link}</span>
+                                <ChevronRight size={12} className="text-white/25" />
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
+
+              <button
+                type="button"
+                onClick={() => setMobileLearnOpen((prev) => !prev)}
+                className="mt-1 flex w-full items-center justify-between rounded-xl px-4 py-3 text-sm font-bold lowercase text-white/60 transition-all hover:bg-white/5 hover:text-white"
+              >
+                <span className="flex items-center gap-3">
+                  <span className="h-1.5 w-1.5 rounded-full bg-white/20 shadow-sm" />
+                  Learn
+                </span>
+                <ChevronRight size={16} className={`transition-transform duration-300 ${mobileLearnOpen ? 'rotate-90' : ''}`} />
+              </button>
+
+              <AnimatePresence>
+                {mobileLearnOpen ? (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0, y: -6 }}
+                    animate={{ opacity: 1, height: 'auto', y: 0 }}
+                    exit={{ opacity: 0, height: 0, y: -6 }}
+                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    className="overflow-hidden rounded-xl border border-white/10 bg-white/5 px-3 py-3"
+                  >
+                    <div className="space-y-4">
+                      <div className="space-y-2">
+                        <p className="px-2 text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#EA2828]">BLOCKCHAIN</p>
+                        <div className="space-y-1">
+                          {learnResources[0].items.map((link) => (
+                            <a
+                              key={link}
+                              href="#"
+                              onClick={() => setIsOpen(false)}
+                              className="flex items-center justify-between rounded-lg px-3 py-2 text-xs font-medium text-white/70 transition-all hover:bg-white/5 hover:text-white"
+                            >
+                              <span>{link}</span>
+                              <ChevronRight size={12} className="text-white/25" />
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <p className="px-2 text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#EA2828]">HIGHLIGHTS</p>
+                        <div className="rounded-none border border-white/15 bg-white/10 p-4">
+                          <div className="mb-3 text-[10px] font-bold uppercase tracking-[0.18em] text-white/50">LATEST TWEET</div>
+                          <div className="flex h-[120px] items-center justify-center border border-white/10 bg-black/20 text-xs text-white/60">
+                            Tweet content coming soon
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
+
+              <button
+                type="button"
+                onClick={() => setMobileProductsOpen((prev) => !prev)}
+                className="mt-1 flex w-full items-center justify-between rounded-xl px-4 py-3 text-sm font-bold lowercase text-white/60 transition-all hover:bg-white/5 hover:text-white"
+              >
+                <span className="flex items-center gap-3">
+                  <span className="h-1.5 w-1.5 rounded-full bg-white/20 shadow-sm" />
+                  Products
+                </span>
+                <ChevronRight size={16} className={`transition-transform duration-300 ${mobileProductsOpen ? 'rotate-90' : ''}`} />
+              </button>
+
+              <AnimatePresence>
+                {mobileProductsOpen ? (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0, y: -6 }}
+                    animate={{ opacity: 1, height: 'auto', y: 0 }}
+                    exit={{ opacity: 0, height: 0, y: -6 }}
+                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    className="overflow-hidden rounded-xl border border-white/10 bg-white/5 px-3 py-3"
+                  >
+                    <div className="space-y-2">
+                      <p className="px-2 text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#EA2828]">PRODUCTS</p>
+                      {productsResources.map((product, index) => (
+                        <a
+                          key={product.name}
+                          href="#"
+                          onClick={() => setIsOpen(false)}
+                          className={`block rounded-lg px-3 py-2 transition-all hover:bg-white/5 ${index !== productsResources.length - 1 ? 'border-b border-white/10' : ''}`}
+                        >
+                          <div className="text-xs font-bold text-white transition-all hover:text-[#EA2828]">
+                            {product.name}
+                          </div>
+                          <div className="mt-1 text-[11px] text-white/55">
+                            {product.description}
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
+
+              {navItems
+                .filter((item) => item.label !== 'Build' && item.label !== 'Learn' && item.label !== 'Products')
+                .map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-sm font-bold lowercase transition-all ${item.active ? 'bg-teal-500/10 text-[#2DD4BF]' : 'text-white/60 hover:bg-white/5 hover:text-white'}`}
                     onClick={() => setIsOpen(false)}
                   >
                     <span className="flex items-center gap-3">
                       <span className={`h-1.5 w-1.5 rounded-full shadow-sm ${item.active ? 'bg-[#2DD4BF]' : 'bg-white/20'}`} />
                       {item.label}
                     </span>
-                    <svg className="w-4 h-4 opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="h-4 w-4 opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </Link>
-                </li>
-              ))}
-            </ul>
+                ))}
+            </div>
 
             <div className="mt-4 px-2">
               <Link
