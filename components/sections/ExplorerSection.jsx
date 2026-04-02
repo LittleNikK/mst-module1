@@ -82,9 +82,14 @@ export default function ExplorerSection() {
   }, []);
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#f7f7f8]">
-      <div className="pointer-events-none absolute inset-0 opacity-[0.06] [background-image:linear-gradient(to_right,rgba(15,23,42,0.24)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.24)_1px,transparent_1px)] [background-size:30px_30px]" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_52%_14%,rgba(255,255,255,0.78),rgba(255,255,255,0)_53%),linear-gradient(135deg,rgba(255,45,45,0.05)_0%,rgba(255,255,255,0.55)_42%,rgba(232,235,240,0.52)_100%)]" />
+    <section className="bg-noise relative w-full overflow-hidden bg-[#fafafa]">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,45,45,0.15),rgba(255,100,50,0.05),transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_100%_40%,rgba(255,45,45,0.08),transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_0%_60%,rgba(0,0,0,0.03),transparent_70%)]" />
+
+      <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_0%,#000_80%,transparent_100%)]" />
+
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[2px] bg-gradient-to-r from-transparent via-accent/30 to-transparent shadow-[0_0_20px_rgba(255,45,45,0.6)]" />
 
       <motion.div
         aria-hidden
@@ -99,7 +104,7 @@ export default function ExplorerSection() {
         className="pointer-events-none absolute left-[16%] top-[44%] h-[240px] w-[240px] rounded-full bg-[#60a5fa]/[0.07] blur-[110px]"
       />
 
-      <div className="relative mx-auto max-w-7xl px-6 py-24">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 py-24">
         <div className="text-center">
           <h2 className="font-[var(--font-space-grotesk)] text-3xl font-extrabold uppercase tracking-[-0.03em] text-black sm:text-4xl md:text-5xl">
             MST NETWORK{' '}

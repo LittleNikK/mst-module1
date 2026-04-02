@@ -26,7 +26,7 @@ export default function ExplorerCard({ title, rows, type, isUpdating }) {
     <motion.article
       whileHover={{ y: -3 }}
       transition={{ duration: 0.25, ease: 'easeOut' }}
-      className="rounded-sm border border-black/15 bg-white/85 p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-shadow duration-300 hover:shadow-[0_14px_36px_rgba(0,0,0,0.08)]"
+      className="h-full min-h-[500px] rounded-sm border border-black/15 bg-white/85 p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-shadow duration-300 hover:shadow-[0_14px_36px_rgba(0,0,0,0.08)]"
     >
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-bold uppercase tracking-[0.08em] text-black">{title}</h3>
@@ -41,11 +41,13 @@ export default function ExplorerCard({ title, rows, type, isUpdating }) {
 
       <div className="mt-4 h-px w-full bg-black/10" />
 
-      {isUpdating && (
-        <div className="mt-5 h-9 overflow-hidden rounded-md border border-black/10 bg-gradient-to-r from-transparent via-black/[0.05] to-transparent" />
-      )}
+      <div
+        className={`mt-5 h-9 overflow-hidden rounded-md border border-black/10 bg-gradient-to-r from-transparent via-black/[0.05] to-transparent transition-opacity duration-200 ${
+          isUpdating ? 'opacity-100' : 'opacity-0'
+        }`}
+      />
 
-      <ul className="mt-5 space-y-3">
+      <ul className="mt-5 min-h-[320px] space-y-3">
         <AnimatePresence mode="popLayout" initial={false}>
           {rows.map((row) => (
             <ExplorerRow key={row.uid} item={row} type={type === 'blocks' ? 'blocks' : 'tx'} />
