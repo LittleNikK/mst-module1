@@ -10,14 +10,14 @@ export default function ExplorerRow({ item, type }) {
     <motion.li
       layout
       initial={{ opacity: 0, y: -20, backgroundColor: 'rgba(255,45,45,0.14)' }}
-      animate={{ opacity: 1, y: 0, backgroundColor: 'rgba(255,255,255,1)' }}
+      animate={{ opacity: 1, y: 0, backgroundColor: 'rgba(0,0,0,1)' }}
       exit={{ opacity: 0, y: 20 }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ scale: 1.01 }}
-      className="flex items-center justify-between rounded-md border border-black/10 px-6 py-4 text-sm transition-colors duration-200 hover:border-black/40"
+      className="flex items-center justify-between rounded-md border border-white/20 px-6 py-4 text-sm transition-colors duration-200 hover:border-white/45"
     >
-      <span className="font-semibold tracking-[0.01em] text-black/85">{leftText}</span>
-      <span className="text-xs font-medium uppercase tracking-[0.12em] text-black/50">{rightText}</span>
+      <span className="font-semibold tracking-[0.01em] text-white">{leftText}</span>
+      <span className="text-xs font-medium uppercase tracking-[0.12em] text-white/75">{rightText}</span>
     </motion.li>
   );
 }

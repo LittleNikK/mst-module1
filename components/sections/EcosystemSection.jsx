@@ -59,7 +59,7 @@ export default function EcosystemSection() {
             type="button"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.98 }}
-            className="rounded-sm bg-[#FF2D2D] px-8 py-3 text-sm font-bold uppercase tracking-[0.14em] text-white shadow-[0_14px_32px_rgba(255,45,45,0.28)] transition-all duration-300 hover:bg-[#d92638] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#FF2D2D]/30"
+            className="rounded-sm bg-black px-8 py-3 text-sm font-bold uppercase tracking-[0.14em] text-white shadow-[0_14px_32px_rgba(0,0,0,0.25)] transition-all duration-300 hover:bg-[#FF2D2D] hover:shadow-[0_14px_32px_rgba(255,45,45,0.32)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#FF2D2D]/30"
           >
             Become a Partner
           </motion.button>

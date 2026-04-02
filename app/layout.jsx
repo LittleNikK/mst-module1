@@ -19,7 +19,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}>{children}</body>
+      <body suppressHydrationWarning className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }

@@ -119,8 +119,8 @@ export default function ExplorerSection() {
             whileTap={{ scale: 0.99 }}
             className="group relative overflow-hidden border border-black px-8 py-3 text-sm font-bold uppercase tracking-[0.14em] text-black hover:border-[#EA3446]"
           >
-            <span className="absolute inset-0 -z-10 origin-left scale-x-0 bg-[#EA3446] transition-transform duration-300 group-hover:scale-x-100" />
-            <span className="transition-colors duration-300 group-hover:text-white">VISIT OUR EXPLORER</span>
+            <span className="absolute inset-0 -z-10 origin-left scale-x-0 bg-[#EA3446] transition-transform duration-700 ease-out group-hover:scale-x-100" />
+            <span className="transition-colors duration-700 ease-out group-hover:text-white">VISIT OUR EXPLORER</span>
           </motion.button>
         </div>
       </div>

@@ -30,11 +30,18 @@ export default function HeroImage() {
   const activeIndex = slideCount % slides.length;
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setSlideCount((prev) => prev + 1);
-    }, 4500);
+    let intervalId;
 
-    return () => clearInterval(intervalId);
+    const initialDelayId = setTimeout(() => {
+      intervalId = setInterval(() => {
+        setSlideCount((prev) => prev + 1);
+      }, 4500);
+    }, 5000);
+
+    return () => {
+      clearTimeout(initialDelayId);
+      clearInterval(intervalId);
+    };
   }, []);
 
   return (
@@ -120,7 +127,7 @@ export default function HeroImage() {
       >
         <motion.div
           animate={{ rotateY: slideCount * -360 }}
-          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 12, ease: [0.16, 1, 0.3, 1] }}
           style={{ transformStyle: 'preserve-3d' }}
           className="w-full h-full origin-center"
         >
