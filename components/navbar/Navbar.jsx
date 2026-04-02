@@ -38,15 +38,16 @@ export default function Navbar() {
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="relative p-[1px] rounded-2xl bg-gradient-to-r from-teal-500/10 via-teal-400 to-teal-500/10 shadow-[0_8px_32px_rgba(45,212,191,0.15)] transition-all duration-300"
+        className="relative rounded-2xl bg-gradient-to-r from-[#EA2828]/25 via-[#EA2828] to-[#EA2828]/25 p-[1px] shadow-[0_8px_32px_rgba(234,40,40,0.18)] transition-all duration-300"
       >
-        <div className="relative rounded-2xl bg-black/90 backdrop-blur-[12px] overflow-hidden group/nav">
+        <div className="relative overflow-hidden rounded-2xl bg-black/90 backdrop-blur-[12px] group/nav">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(234,40,40,0.18),transparent_55%),linear-gradient(135deg,rgba(234,40,40,0.12)_0%,rgba(0,0,0,0.08)_50%,rgba(234,40,40,0.08)_100%)] opacity-80" />
           
           {/* Continuous Ambient Loop - Always Active */}
           <motion.div
             animate={{ left: ['-20%', '120%'] }}
             transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-            className="pointer-events-none absolute inset-y-0 w-[300px] -translate-x-1/2 bg-gradient-to-r from-transparent via-red-500/10 to-transparent mix-blend-screen opacity-50"
+            className="pointer-events-none absolute inset-y-0 w-[300px] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#EA2828]/20 to-transparent mix-blend-screen opacity-50"
           />
 
           {/* Rose Red Ripple Wave Effect - High Intensity Scanline */}
@@ -63,7 +64,7 @@ export default function Navbar() {
                   style={{
                     left: mousePos.x,
                     top: mousePos.y,
-                    background: 'radial-gradient(circle, rgba(255, 45, 45, 0.7) 0%, transparent 70%)',
+                    background: 'radial-gradient(circle, rgba(234, 40, 40, 0.72) 0%, transparent 70%)',
                   }}
                   className="pointer-events-none absolute h-[150px] w-[150px] -translate-x-1/2 -translate-y-1/2 rounded-full mix-blend-screen"
                 />
@@ -75,7 +76,7 @@ export default function Navbar() {
                   animate={{ left: '120%', opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.6, ease: "easeInOut" }}
-                  className="pointer-events-none absolute inset-y-0 w-[400px] -translate-x-1/2 bg-gradient-to-r from-transparent via-red-500/40 to-transparent mix-blend-screen"
+                  className="pointer-events-none absolute inset-y-0 w-[400px] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#EA2828]/40 to-transparent mix-blend-screen"
                 />
               </>
             )}
