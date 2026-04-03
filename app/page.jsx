@@ -10,6 +10,7 @@ import StructuralPurity from '@/components/sections/StructuralPurity';
 import Footer from '@/components/layout/Footer';
 import AboutUs from '@/components/about/AboutUs';
 import Contacts from '@/components/contact/Contacts';
+import Grant from '@/components/grant/Grant'; 
 
 export default function HomePage() {
   return (
@@ -25,6 +26,7 @@ export default function HomePage() {
       <StructuralPurity />
       <AboutUs/>
       <Contacts/>
+      <Grant/>
       <Footer />
     </main>
   );
