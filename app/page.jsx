@@ -8,6 +8,8 @@ import EcosystemSection from '@/components/sections/EcosystemSection';
 import BlogsSection from '@/components/sections/BlogsSection';
 import StructuralPurity from '@/components/sections/StructuralPurity';
 import Footer from '@/components/layout/Footer';
+import AboutUs from '@/components/about/AboutUs';
+import Contacts from '@/components/contact/Contacts';
 
 export default function HomePage() {
   return (
@@ -21,6 +23,8 @@ export default function HomePage() {
       <EcosystemSection />
       <BlogsSection />
       <StructuralPurity />
+      <AboutUs/>
+      <Contacts/>
       <Footer />
     </main>
   );
