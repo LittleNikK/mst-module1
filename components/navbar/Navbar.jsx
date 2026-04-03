@@ -16,11 +16,20 @@ const navItems = [
 const buildResources = [
   {
     title: 'DEVELOPER RESOURCES',
-    items: ['Testnet', 'Faucet', 'Developer Docs', 'MST Explorer']
+    items: [
+      { label: 'Testnet', href: '#' },
+      { label: 'Faucet', href: '#' },
+      { label: 'Developer Docs', href: '#' },
+      { label: 'MST Explorer', href: '#' }
+    ]
   },
   {
     title: 'SUPPORT & PROGRAMS',
-    items: ['Grant Program', 'Developer Support Forum', 'Personalized Dev Support']
+    items: [
+      { label: 'Grant Program', href: '/grant' },
+      { label: 'Developer Support Forum', href: '#' },
+      { label: 'Personalized Dev Support', href: '#' }
+    ]
   }
 ];
 
@@ -138,14 +147,14 @@ export default function Navbar() {
               className="mt-5 space-y-3"
             >
               {group.items.map((link) => (
-                <motion.li key={link} variants={{ hidden: { opacity: 0, x: -8 }, show: { opacity: 1, x: 0 } }}>
-                  <a
-                    href="#"
+                <motion.li key={link.label} variants={{ hidden: { opacity: 0, x: -8 }, show: { opacity: 1, x: 0 } }}>
+                  <Link
+                    href={link.href}
                     className="group flex items-center justify-between rounded-xl px-3 py-2 text-sm font-medium text-black transition-all duration-300 hover:bg-black/5 hover:text-[#FF2D2D]"
                   >
-                    <span className="transition-transform duration-300 group-hover:translate-x-1">{link}</span>
+                    <span className="transition-transform duration-300 group-hover:translate-x-1">{link.label}</span>
                     <ChevronRight size={14} className="text-black/25 transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#FF2D2D]" />
-                  </a>
+                  </Link>
                 </motion.li>
               ))}
             </motion.ul>
@@ -370,9 +379,8 @@ export default function Navbar() {
                     <Link href={item.href} className={navLinkClass(item.active)}>
                       <span>{item.label}</span>
                       <span
-                        className={`absolute -bottom-1 left-0 h-[1.5px] bg-[#ff2d2d] transition-all duration-300 ${
-                          item.active ? 'w-full' : 'w-0 group-hover:w-full'
-                        }`}
+                        className={`absolute -bottom-1 left-0 h-[1.5px] bg-[#ff2d2d] transition-all duration-300 ${item.active ? 'w-full' : 'w-0 group-hover:w-full'
+                          }`}
                       />
                     </Link>
                   )}
@@ -450,15 +458,15 @@ export default function Navbar() {
                           <p className="px-2 text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#EA2828]">{group.title}</p>
                           <div className="space-y-1">
                             {group.items.map((link) => (
-                              <a
-                                key={link}
-                                href="#"
+                              <Link
+                                key={link.label}
+                                href={link.href}
                                 onClick={() => setIsOpen(false)}
                                 className="flex items-center justify-between rounded-lg px-3 py-2 text-xs font-medium text-white/70 transition-all hover:bg-white/5 hover:text-white"
                               >
-                                <span>{link}</span>
+                                <span>{link.label}</span>
                                 <ChevronRight size={12} className="text-white/25" />
-                              </a>
+                              </Link>
                             ))}
                           </div>
                         </div>
