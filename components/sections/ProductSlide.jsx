@@ -1,13 +1,9 @@
 'use client';
 
-<<<<<<< HEAD
-import Image from 'next/image';
-=======
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
->>>>>>> baf458e (Initial commit)
 import { motion } from 'framer-motion';
 
 const highlightsByTitle = {
@@ -16,8 +12,6 @@ const highlightsByTitle = {
   'MST SDK TOOLKIT': ['Dev-first primitives', 'Modular integrations']
 };
 
-<<<<<<< HEAD
-=======
 function MobilePhoneCanvas() {
   const canvasRef = useRef(null);
 
@@ -156,7 +150,6 @@ function MobilePhoneCanvas() {
   return <canvas ref={canvasRef} className="block h-full w-full" />;
 }
 
->>>>>>> baf458e (Initial commit)
 export default function ProductSlide({ product, variant = 'text', index = 1, total = 3 }) {
   const highlights = highlightsByTitle[product.title] ?? [];
 
@@ -170,12 +163,8 @@ export default function ProductSlide({ product, variant = 'text', index = 1, tot
         className="overflow-hidden rounded-[1.6rem] border border-black/10 bg-white"
       >
         <div className="relative aspect-[4/3] overflow-hidden bg-[#f5f5f6]">
-<<<<<<< HEAD
-          <Image src={product.image} alt={product.title} fill className="object-cover" sizes="100vw" />
-=======
           <MobilePhoneCanvas />
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_15%,rgba(255,45,45,0.12),transparent_45%),linear-gradient(180deg,rgba(255,255,255,0.28),transparent_30%,transparent_70%,rgba(0,0,0,0.03))]" />
->>>>>>> baf458e (Initial commit)
         </div>
 
         <div className="space-y-4 p-6">
@@ -222,7 +211,6 @@ export default function ProductSlide({ product, variant = 'text', index = 1, tot
       <div className="mt-5 h-px w-full bg-black/10" />
 
       <p className="mt-5 text-base leading-relaxed text-black/65 xl:text-lg">{product.description}</p>
-
     </motion.div>
   );
 }
