@@ -10,7 +10,7 @@ import StructuralPurity from '@/components/sections/StructuralPurity';
 import Footer from '@/components/layout/Footer';
 import AboutUs from '@/components/about/AboutUs';
 import Contacts from '@/components/contact/Contacts';
-import Grant from '@/components/grant/Grant'; 
+import UseCases from '@/components/UseCases/UseCase';
 
 export default function HomePage() {
   return (
@@ -19,14 +19,15 @@ export default function HomePage() {
       <HeroSection />
       <WhatIsMST />
       <ProductsSection />
+      <UseCases/>
       <ValidatorCTA />
       <ExplorerSection />
       <EcosystemSection />
       <BlogsSection />
       <StructuralPurity />
-      <AboutUs/>
-      <Contacts/>
-      <Grant/>
+      <AboutUs />
+      <Contacts />
+
       <Footer />
     </main>
   );
