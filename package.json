@@ -10,19 +10,12 @@
   },
   "dependencies": {
     "framer-motion": "^11.18.2",
-<<<<<<< HEAD
-    "lucide-react": "^1.7.0",
-    "next": "^15.5.2",
-    "react": "19.0.0",
-    "react-dom": "19.0.0"
-=======
     "gsap": "^3.14.2",
     "lucide-react": "^1.7.0",
     "next": "^15.5.2",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "three": "^0.183.2"
->>>>>>> baf458e (Initial commit)
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
