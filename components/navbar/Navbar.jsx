@@ -10,24 +10,39 @@ const navItems = [
   { label: 'Build', href: '#', active: true },
   { label: 'Learn', href: '#', active: false },
   { label: 'Products', href: '#', active: false },
-  { label: 'Use Cases', href: '#', active: false }
+  { label: 'Use Cases', href: 'test.html', active: false }
 ];
 
 const buildResources = [
   {
     title: 'DEVELOPER RESOURCES',
-    items: ['Testnet', 'Faucet', 'Developer Docs', 'MST Explorer']
+    items: [
+      { label: 'Testnet', href: '#' },
+      { label: 'Faucet', href: '#' },
+      { label: 'Developer Docs', href: '#' },
+      { label: 'MST Explorer', href: '#' }
+    ]
   },
   {
     title: 'SUPPORT & PROGRAMS',
-    items: ['Grant Program', 'Developer Support Forum', 'Personalized Dev Support']
+    items: [
+      { label: 'Grant Program', href: '#' },
+      { label: 'Developer Support Forum', href: '#' },
+      { label: 'Personalized Dev Support', href: '#' }
+    ]
   }
 ];
 
 const learnResources = [
   {
     title: 'BLOCKCHAIN',
-    items: ['Block Validation Process', 'DAO & MST Chain', 'No Code Fractional Validator', 'Solidity : EVM Programming Language', 'Transparency']
+    items: [
+      { label: 'Block Validation Process', href: '#' },
+      { label: 'DAO & MST Chain', href: '#' },
+      { label: 'No Code Fractional Validator', href: '#' },
+      { label: 'Solidity : EVM Programming Language', href: '#' },
+      { label: 'Transparency', href: '#' }
+    ]
   }
 ];
 
@@ -40,15 +55,18 @@ const learnHighlights = {
 const productsResources = [
   {
     name: 'BridgeKey',
-    description: 'Cross-chain asset bridging'
+    description: 'Cross-chain asset bridging',
+    href: '#'
   },
   {
     name: 'MST Buddy',
-    description: 'Developer assistant toolkit'
+    description: 'Developer assistant toolkit',
+    href: '#'
   },
   {
     name: 'ChainPay',
-    description: 'Seamless Web3 payments'
+    description: 'Seamless Web3 payments',
+    href: '#'
   }
 ];
 
@@ -60,9 +78,6 @@ export default function Navbar() {
   const [mobileBuildOpen, setMobileBuildOpen] = useState(false);
   const [mobileLearnOpen, setMobileLearnOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
-  const containerRef = useRef(null);
   const buildCloseTimerRef = useRef(null);
   const learnCloseTimerRef = useRef(null);
   const productsCloseTimerRef = useRef(null);
@@ -74,12 +89,6 @@ export default function Navbar() {
       if (productsCloseTimerRef.current) clearTimeout(productsCloseTimerRef.current);
     };
   }, []);
-
-  const handleMouseMove = (e) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-  };
 
   const openBuildMenu = () => {
     if (buildCloseTimerRef.current) clearTimeout(buildCloseTimerRef.current);
@@ -137,15 +146,15 @@ export default function Navbar() {
               variants={{ hidden: {}, show: { transition: { staggerChildren: 0.04, delayChildren: 0.04 } } }}
               className="mt-5 space-y-3"
             >
-              {group.items.map((link) => (
-                <motion.li key={link} variants={{ hidden: { opacity: 0, x: -8 }, show: { opacity: 1, x: 0 } }}>
-                  <a
-                    href="#"
+              {group.items.map((item) => (
+                <motion.li key={item.label} variants={{ hidden: { opacity: 0, x: -8 }, show: { opacity: 1, x: 0 } }}>
+                  <Link
+                    href={item.href}
                     className="group flex items-center justify-between rounded-xl px-3 py-2 text-sm font-medium text-black transition-all duration-300 hover:bg-black/5 hover:text-[#FF2D2D]"
                   >
-                    <span className="transition-transform duration-300 group-hover:translate-x-1">{link}</span>
+                    <span className="transition-transform duration-300 group-hover:translate-x-1">{item.label}</span>
                     <ChevronRight size={14} className="text-black/25 transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#FF2D2D]" />
-                  </a>
+                  </Link>
                 </motion.li>
               ))}
             </motion.ul>
@@ -174,15 +183,15 @@ export default function Navbar() {
             variants={{ hidden: {}, show: { transition: { staggerChildren: 0.04, delayChildren: 0.04 } } }}
             className="space-y-3"
           >
-            {learnResources[0].items.map((link) => (
-              <motion.li key={link} variants={{ hidden: { opacity: 0, x: -8 }, show: { opacity: 1, x: 0 } }}>
-                <a
-                  href="#"
+            {learnResources[0].items.map((item) => (
+              <motion.li key={item.label} variants={{ hidden: { opacity: 0, x: -8 }, show: { opacity: 1, x: 0 } }}>
+                <Link
+                  href={item.href}
                   className="group flex items-center justify-between rounded-xl px-3 py-2 text-sm font-medium text-black transition-all duration-300 hover:bg-black/5 hover:text-[#FF2D2D]"
                 >
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">{link}</span>
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">{item.label}</span>
                   <ChevronRight size={14} className="text-black/25 transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#FF2D2D]" />
-                </a>
+                </Link>
               </motion.li>
             ))}
           </motion.ul>
@@ -230,8 +239,8 @@ export default function Navbar() {
             variants={{ hidden: { opacity: 0, x: -8 }, show: { opacity: 1, x: 0 } }}
             className={index !== productsResources.length - 1 ? 'border-b border-black/10 pb-2' : ''}
           >
-            <a
-              href="#"
+            <Link
+              href={product.href}
               className="group block rounded-xl px-3 py-2 transition-all duration-300 hover:bg-black/5"
             >
               <div className="flex items-center justify-between gap-4">
@@ -245,7 +254,7 @@ export default function Navbar() {
                 </div>
                 <ChevronRight size={14} className="text-black/25 transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#FF2D2D]" />
               </div>
-            </a>
+            </Link>
           </motion.li>
         ))}
       </motion.ul>
@@ -260,49 +269,10 @@ export default function Navbar() {
       className="fixed top-4 left-0 right-0 z-50 mx-auto w-full max-w-[90rem] px-4 sm:px-5 lg:px-6"
     >
       <div
-        ref={containerRef}
-        onMouseMove={handleMouseMove}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        className="relative rounded-2xl bg-gradient-to-r from-[#EA2828]/25 via-[#EA2828] to-[#EA2828]/25 p-[1px] shadow-[0_8px_32px_rgba(234,40,40,0.18)] transition-all duration-300"
+        className="relative rounded-2xl border border-white/10 bg-[#0b0b0b] p-[1px] shadow-[0_8px_26px_rgba(0,0,0,0.28)] transition-all duration-300"
       >
         <div className="relative overflow-visible rounded-2xl bg-black/90 backdrop-blur-[12px] group/nav">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(234,40,40,0.18),transparent_55%),linear-gradient(135deg,rgba(234,40,40,0.12)_0%,rgba(0,0,0,0.08)_50%,rgba(234,40,40,0.08)_100%)] opacity-80" />
-
-          <motion.div
-            animate={{ left: ['-20%', '120%'] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
-            className="pointer-events-none absolute inset-y-0 w-[300px] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#EA2828]/20 to-transparent mix-blend-screen opacity-50"
-          />
-
-          <AnimatePresence>
-            {isHovered && (
-              <>
-                <motion.div
-                  key="ripple-core"
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 0.8, scale: 15 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
-                  style={{
-                    left: mousePos.x,
-                    top: mousePos.y,
-                    background: 'radial-gradient(circle, rgba(234, 40, 40, 0.72) 0%, transparent 70%)'
-                  }}
-                  className="pointer-events-none absolute h-[150px] w-[150px] -translate-x-1/2 -translate-y-1/2 rounded-full mix-blend-screen"
-                />
-
-                <motion.div
-                  key="ripple-sweep"
-                  initial={{ left: '-20%', opacity: 0 }}
-                  animate={{ left: '120%', opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.6, ease: 'easeInOut' }}
-                  className="pointer-events-none absolute inset-y-0 w-[400px] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#EA2828]/40 to-transparent mix-blend-screen"
-                />
-              </>
-            )}
-          </AnimatePresence>
+          <div className="pointer-events-none absolute inset-0 bg-black/20" />
 
           <nav className="relative z-20 flex h-16 w-full items-center justify-between px-4 lg:px-8">
             <Link href="#" className="-ml-1 flex items-center gap-2 group">
@@ -449,16 +419,16 @@ export default function Navbar() {
                         <div key={group.title} className="space-y-2">
                           <p className="px-2 text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#EA2828]">{group.title}</p>
                           <div className="space-y-1">
-                            {group.items.map((link) => (
-                              <a
-                                key={link}
-                                href="#"
+                            {group.items.map((item) => (
+                              <Link
+                                key={item.label}
+                                href={item.href}
                                 onClick={() => setIsOpen(false)}
                                 className="flex items-center justify-between rounded-lg px-3 py-2 text-xs font-medium text-white/70 transition-all hover:bg-white/5 hover:text-white"
                               >
-                                <span>{link}</span>
+                                <span>{item.label}</span>
                                 <ChevronRight size={12} className="text-white/25" />
-                              </a>
+                              </Link>
                             ))}
                           </div>
                         </div>
@@ -493,16 +463,16 @@ export default function Navbar() {
                       <div className="space-y-2">
                         <p className="px-2 text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#EA2828]">BLOCKCHAIN</p>
                         <div className="space-y-1">
-                          {learnResources[0].items.map((link) => (
-                            <a
-                              key={link}
-                              href="#"
+                          {learnResources[0].items.map((item) => (
+                            <Link
+                              key={item.label}
+                              href={item.href}
                               onClick={() => setIsOpen(false)}
                               className="flex items-center justify-between rounded-lg px-3 py-2 text-xs font-medium text-white/70 transition-all hover:bg-white/5 hover:text-white"
                             >
-                              <span>{link}</span>
+                              <span>{item.label}</span>
                               <ChevronRight size={12} className="text-white/25" />
-                            </a>
+                            </Link>
                           ))}
                         </div>
                       </div>
@@ -545,9 +515,9 @@ export default function Navbar() {
                     <div className="space-y-2">
                       <p className="px-2 text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#EA2828]">PRODUCTS</p>
                       {productsResources.map((product, index) => (
-                        <a
+                        <Link
                           key={product.name}
-                          href="#"
+                          href={product.href}
                           onClick={() => setIsOpen(false)}
                           className={`block rounded-lg px-3 py-2 transition-all hover:bg-white/5 ${index !== productsResources.length - 1 ? 'border-b border-white/10' : ''}`}
                         >
@@ -557,7 +527,7 @@ export default function Navbar() {
                           <div className="mt-1 text-[11px] text-white/55">
                             {product.description}
                           </div>
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </motion.div>

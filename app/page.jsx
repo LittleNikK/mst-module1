@@ -8,9 +8,12 @@ import EcosystemSection from '@/components/sections/EcosystemSection';
 import BlogsSection from '@/components/sections/BlogsSection';
 import StructuralPurity from '@/components/sections/StructuralPurity';
 import Footer from '@/components/layout/Footer';
+<<<<<<< HEAD
 import AboutUs from '@/components/about/AboutUs';
 import Contacts from '@/components/contact/Contacts';
 import Grant from '@/components/grant/Grant'; 
+=======
+>>>>>>> baf458e (Initial commit)
 
 export default function HomePage() {
   return (
@@ -24,9 +27,12 @@ export default function HomePage() {
       <EcosystemSection />
       <BlogsSection />
       <StructuralPurity />
+<<<<<<< HEAD
       <AboutUs/>
       <Contacts/>
       <Grant/>
+=======
+>>>>>>> baf458e (Initial commit)
       <Footer />
     </main>
   );
