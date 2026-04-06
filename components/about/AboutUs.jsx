@@ -37,11 +37,11 @@ const team = [
 const AboutUs = () => {
   return (
     <div className="bg-gradient-to-br from-white via-red-50 to-pink-100 text-gray-800">
-      
+
       {/* HERO */}
       <section className="px-6 md:px-10 py-16">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-          
+
           <div>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">
               About <span className="text-red-600">MST Blockchain</span>

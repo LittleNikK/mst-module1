@@ -52,7 +52,7 @@ export default function ValidatorCTA() {
       </motion.div>
 
       <div className="relative mx-auto max-w-5xl px-6 py-24 md:py-28 lg:py-32">
-        <div className="relative border border-black/80 bg-white px-6 py-14 text-center shadow-[0_18px_60px_rgba(0,0,0,0.07)] sm:px-10 sm:py-16 md:px-16 md:py-20">
+        <div className="relative border rounded-[18px] border-black/80 bg-white px-6 py-14 text-center shadow-[0_18px_60px_rgba(0,0,0,0.07)] sm:px-10 sm:py-16 md:px-16 md:py-20">
           <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(255,45,45,0.08),transparent_58%)]" />
 
           <p className="mx-auto mb-5 max-w-max border border-black/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-black/45 sm:mb-6">
@@ -71,7 +71,7 @@ export default function ValidatorCTA() {
             type="button"
             whileHover={{ scale: 1.05 }}
             transition={{ type: 'spring', stiffness: 320, damping: 22 }}
-            className="mt-10 inline-flex items-center justify-center bg-black px-8 py-3 text-sm font-bold uppercase tracking-[0.14em] text-white shadow-[0_10px_24px_rgba(0,0,0,0.2)] transition-all duration-300 hover:bg-[#EA3446] hover:shadow-[0_16px_32px_rgba(0,0,0,0.28)] md:mt-12"
+            className="mt-10 inline-flex items-center rounded-[14px] justify-center bg-black px-8 py-3 text-sm font-bold uppercase tracking-[0.14em] text-white shadow-[0_10px_24px_rgba(0,0,0,0.2)] transition-all duration-300 hover:bg-[#EA3446] hover:shadow-[0_16px_32px_rgba(0,0,0,0.28)] md:mt-12"
           >
             JOIN THE SYSTEM
           </motion.button>

@@ -1,5 +1,7 @@
 import { Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
+import CustomCursor from '@/components/CustomCursor';
+
 
 const inter = Inter({
   subsets: ['latin'],
@@ -20,6 +22,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body suppressHydrationWarning className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}>
+        <CustomCursor />
         {children}
       </body>
     </html>

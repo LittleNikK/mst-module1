@@ -38,7 +38,7 @@ const itemVariants = {
 
 export default function Footer() {
   return (
-    <footer className="relative w-full overflow-hidden border-t-4 border-black bg-[#f7f7f8]">
+    <footer className="relative w-full overflow-hidden border-t-[1px] border-black bg-[#f7f7f8]">
       <div className="pointer-events-none absolute inset-0 opacity-[0.04] [background-image:linear-gradient(to_right,rgba(15,23,42,0.24)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.24)_1px,transparent_1px)] [background-size:30px_30px]" />
 
       <motion.div
