@@ -2,14 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: light;
+
+/* ❌ Completely hide default cursor */
+* {
+  cursor: none !important;
 }
 
+/* ✅ Apply your custom cursor everywhere */
 body {
-  font-family: var(--font-inter), system-ui, sans-serif;
-  background-color: #ffffff;
-  color: #050505;
+  cursor: url('/assets/hero/1.png') 16 16, auto !important;
+}
+
+/* ✅ Maintain pointer behavior for clickable elements */
+a,
+button,
+[role="button"] {
+  cursor: url('/1.png') 16 16, pointer !important;
 }
 
 @keyframes partners-marquee {

@@ -71,11 +71,11 @@ export default function HeroStats() {
             {stat.label}
           </p>
           <div className="mt-1 font-[var(--font-space-grotesk)] text-xl sm:text-2xl font-bold tracking-tight text-black drop-shadow-sm group-hover:text-accent transition-colors">
-            <CountUp 
-              value={stat.value} 
-              prefix={stat.prefix} 
-              suffix={stat.suffix} 
-              decimals={stat.value % 1 !== 0 ? 1 : 0} 
+            <CountUp
+              value={stat.value}
+              prefix={stat.prefix}
+              suffix={stat.suffix}
+              decimals={stat.value % 1 !== 0 ? 1 : 0}
             />
           </div>
         </motion.div>

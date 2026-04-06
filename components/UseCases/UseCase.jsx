@@ -64,7 +64,7 @@ const cardVariants = {
 };
 
 const UseCases = () => (
-  <section className="w-full bg-background py-24 md:py-32">
+  <section className="w-full bg-background py-18 md:py-32">
     <div className="max-w-[1400px] mx-auto px-6">
       <motion.h2
         className="font-extrabold uppercase leading-none tracking-tight  mb-12"
@@ -74,6 +74,14 @@ const UseCases = () => (
       </motion.h2>
 
       <div className="uc-grid gap-2" style={{ columns: 5, columnGap: "8px" }}>
+        {/* Subtle Premium Gradient Mesh Backdrop */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,45,45,0.15),rgba(255,100,50,0.05),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_100%_40%,rgba(255,45,45,0.08),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_0%_60%,rgba(0,0,0,0.03),transparent_70%)]" />
+
+        {/* Tech Grid Background */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_0%,#000_80%,transparent_100%)] z-0" />
+
         <style>{`
           @media (max-width: 1024px) { .uc-grid { columns: 3 !important; } }
           @media (max-width: 640px) { .uc-grid { columns: 2 !important; } }
@@ -86,9 +94,10 @@ const UseCases = () => (
         `}</style>
 
         {useCases.map((item, i) => (
+
           <motion.div
             key={item.id}
-            className={`uc-card flex flex-col  justify-end border-[0.1px] border-zinc-700  p-4 mb-4 ml-4 cursor-pointer overflow-hidden relative ${sizeMap[item.size]}`}
+            className={`uc-card flex flex-col rounded-[14px]  justify-end border-[0.1px] border-zinc-700  p-4 mb-4 ml-4 cursor-pointer overflow-hidden relative ${sizeMap[item.size]}`}
             style={{
               // background: "#f5f5f5",
               breakInside: "avoid",

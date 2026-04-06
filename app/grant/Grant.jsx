@@ -20,7 +20,13 @@ function GrantTracks() {
   }, []);
 
   return (
-    <section className="grant-section bg-noise">
+    <>
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,45,45,0.15),rgba(255,100,50,0.05),transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_100%_40%,rgba(255,45,45,0.08),transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_0%_60%,rgba(0,0,0,0.03),transparent_70%)]" />
+
+      <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_0%,#000_80%,transparent_100%)]" />
+
 
       <div className="container">
 
@@ -43,7 +49,7 @@ function GrantTracks() {
                 <img src="https://plus.unsplash.com/premium_photo-1681400678259-255b10890b08?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmxvY2tjaGFpbnxlbnwwfHwwfHx8MA%3D%3D" className="hero-img 
                  active" />
                 <img src="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEyL3Jhd3BpeGVsX29mZmljZV8zOF9waG90b19hbl9hYnN0cmFjdF92aXN1YWxpemF0aW9uX29mX2FfYmxvY2tjaF8yNzkxNDRlNC0zNGE3LTQxMmYtYmU2YS00MTY1ZGIyYjE1MmFfMS5qcGc.jpg" className="hero-img object-cover active" />
-               <img src="https://plus.unsplash.com/premium_photo-1681400678259-255b10890b08?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmxvY2tjaGFpbnxlbnwwfHwwfHx8MA%3D%3D" className="hero-img 
+                <img src="https://plus.unsplash.com/premium_photo-1681400678259-255b10890b08?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmxvY2tjaGFpbnxlbnwwfHwwfHx8MA%3D%3D" className="hero-img 
                  active" />
               </div>
               <div className="hero-glow-1"></div>
@@ -55,7 +61,7 @@ function GrantTracks() {
             <h2>initGrant()</h2>
             <p className="red-text">Up to $50,000</p>
             <p>
-              Designed for <span className="red-text">early-stage innovators</span> and developers exploring 
+              Designed for <span className="red-text">early-stage innovators</span> and developers exploring
               <span className="red-text"> new blockchain concepts</span>.
             </p>
 
@@ -75,7 +81,7 @@ function GrantTracks() {
             <h2>buildGrant()</h2>
             <p className="red-text">Up to $100,000</p>
             <p>
-              Tailored for <span className="red-text">active development</span> and 
+              Tailored for <span className="red-text">active development</span> and
               <span className="red-text"> testnet deployment</span>.
             </p>
 
@@ -110,7 +116,7 @@ function GrantTracks() {
                 <img src="https://plus.unsplash.com/premium_photo-1681400678259-255b10890b08?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmxvY2tjaGFpbnxlbnwwfHwwfHx8MA%3D%3D" className="hero-img 
                  active" />
                 <img src="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEyL3Jhd3BpeGVsX29mZmljZV8zOF9waG90b19hbl9hYnN0cmFjdF92aXN1YWxpemF0aW9uX29mX2FfYmxvY2tjaF8yNzkxNDRlNC0zNGE3LTQxMmYtYmU2YS00MTY1ZGIyYjE1MmFfMS5qcGc.jpg" className="hero-img object-cover active" />
-               <img src="https://plus.unsplash.com/premium_photo-1681400678259-255b10890b08?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmxvY2tjaGFpbnxlbnwwfHwwfHx8MA%3D%3D" className="hero-img 
+                <img src="https://plus.unsplash.com/premium_photo-1681400678259-255b10890b08?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmxvY2tjaGFpbnxlbnwwfHwwfHx8MA%3D%3D" className="hero-img 
                  active" />
               </div>
               <div className="hero-glow-1"></div>
@@ -122,7 +128,7 @@ function GrantTracks() {
             <h2>scaleGrant()</h2>
             <p className="red-text">Up to $500,000</p>
             <p>
-              Built for <span className="red-text">high-growth startups</span> and 
+              Built for <span className="red-text">high-growth startups</span> and
               <span className="red-text"> production-ready systems</span>.
             </p>
 
@@ -136,8 +142,9 @@ function GrantTracks() {
         </div>
 
       </div>
+    </>
 
-    </section>
+
   );
 }
 
